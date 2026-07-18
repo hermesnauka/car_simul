@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: carsimul-backend
+  datasource:
+    url: jdbc:h2:mem:carsimul;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: validate   # schema is owned by Flyway, never by Hibernate
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+  jackson:
+    deserialization:
+      # Strict contract: unknown/extra JSON fields are rejected with 400.
+      # A client smuggling {"status":"PASSED"} into a telemetry event fails here.
+      fail-on-unknown-properties: true
+
+examsim:
+  security:
+    # DEV-ONLY secret. Override via EXAMSIM_SECURITY_JWT_SECRET in any real deployment.
+    jwt-secret: "dev-only-secret-change-me-0123456789abcdef"
+    jwt-ttl-minutes: 60
+  rules:
+    signal-lookback-seconds: 10
+    speeding-duration-seconds: 3
+    critical-speeding-overage-kmh: 20
+    max-acceleration-kmh-per-second: 15.0
+    max-critical-infractions: 3
+    pass-threshold: 70
+    critical-penalty: 20
+    minor-penalty: 5
+    speed-limit-kmh: 50
+
+logging:
+  level:
+    AUDIT: INFO
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/carsimul
+    driver-class-name: org.postgresql.Driver
+    username: carsimul
+    password: ${POSTGRES_PASSWORD:carsimul}

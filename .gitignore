@@ -1,0 +1,46 @@
+tmp/
+.claude/
+.local-dev/
+
+######### Java / Spring Boot (backend/)
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+hs_err_pid*
+replay_pid*
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+!**/gradle-wrapper.properties
+
+######### Node / React (frontend/)
+
+node_modules/
+dist/
+build/
+.vite/
+npm-debug.log*
+
+######### Env / secrets (Kafka, Postgres, Redis config for local docker-compose)
+
+.env
+.env.local
+.env.*.local
+.envrc
+
+######### Editors (opt-in — uncomment if you want the whole folder ignored)
+
+# .idea/
+# .vscode/

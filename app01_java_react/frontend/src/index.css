@@ -1,0 +1,159 @@
+:root {
+  color-scheme: dark;
+  --bg: #14161a;
+  --panel: #1e2229;
+  --border: #333a45;
+  --text: #e6e9ee;
+  --muted: #9aa3b0;
+  --accent: #4d9fff;
+  --good: #4dff88;
+  --bad: #ff4d4d;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* --- navbar --- */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-brand { font-weight: 700; }
+.navbar-links { display: flex; gap: 1rem; flex: 1; }
+.navbar-links a { color: var(--accent); text-decoration: none; }
+.navbar-user { display: flex; align-items: center; gap: 0.75rem; color: var(--muted); }
+
+/* --- cards & layout --- */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.login-card { max-width: 380px; margin: 4rem auto; }
+.exam-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media (max-width: 720px) {
+  .exam-layout { grid-template-columns: 1fr; }
+}
+
+/* --- forms --- */
+form { display: flex; flex-direction: column; gap: 1rem; }
+label { display: flex; flex-direction: column; gap: 0.3rem; color: var(--muted); }
+input {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* --- buttons --- */
+.btn {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #2a3038;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.btn:hover:not(:disabled) { border-color: var(--accent); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #0b1622; font-weight: 600; }
+.btn-danger { background: #3a1f24; border-color: var(--bad); color: var(--bad); }
+.btn-active { background: #234; border-color: var(--good); color: var(--good); }
+.btn-small { padding: 0.3rem 0.7rem; font-size: 0.85rem; }
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+/* --- practice dashboard --- */
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.control-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.control-button.active { border-color: var(--good); box-shadow: 0 0 12px rgba(77, 255, 136, 0.25); }
+.control-button.blinking { animation: blink 1s step-start infinite; }
+@keyframes blink { 50% { border-color: var(--bad); box-shadow: 0 0 12px rgba(255, 77, 77, 0.4); } }
+.control-icon { font-size: 1.8rem; }
+.control-state { color: var(--muted); font-size: 0.8rem; }
+
+/* --- exam page --- */
+.speedometer { width: 100%; max-width: 280px; display: block; margin: 0 auto; }
+.speed-text { fill: var(--text); font-size: 16px; font-weight: 700; }
+.limit-text { fill: var(--muted); font-size: 10px; }
+.pedals, .signals, .turns { display: flex; gap: 0.75rem; margin-top: 1rem; }
+.pedals .btn, .signals .btn, .turns .btn { flex: 1; }
+.cheat-corner { margin-top: 1.5rem; border-top: 1px dashed var(--border); padding-top: 1rem; }
+.scoreboard { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.5rem; }
+.scoreboard dt { color: var(--muted); }
+.scoreboard dd { margin: 0; font-weight: 600; }
+
+/* --- results --- */
+.results-card { max-width: 640px; margin: 2rem auto; text-align: center; }
+.verdict-pass { color: var(--good); }
+.verdict-fail { color: var(--bad); }
+.final-score { font-size: 1.2rem; }
+.infractions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+.infractions-table th, .infractions-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.row-critical td:nth-child(2) { color: var(--bad); font-weight: 600; }
+
+/* --- misc --- */
+.hint { color: var(--muted); }
+.error { color: var(--bad); }
+.notice {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--bad);
+  border-radius: 8px;
+  background: rgba(255, 77, 77, 0.08);
+  color: var(--bad);
+}
+h1, h2 { margin-top: 0; }
